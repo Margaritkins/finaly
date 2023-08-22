@@ -1,14 +1,10 @@
 function handleImgLoad(elemParent) {
   return ({ target }) => {
+    
     elemParent.append(target);
   };
 }
 
-function handleClick( elem) {
-  return({ target }) => {
-  elem.append(target.innerText);
-  };
-}
 
 function getInitials(arg) {
   const initials = arg.split(" ").map((arg) => arg[0].toUpperCase());

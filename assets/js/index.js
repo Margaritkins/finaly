@@ -4,6 +4,7 @@ const socials = new Map();
 socials.set("www.facebook.com", "./assets/icons/facebook.svg");
 socials.set("twitter.com", "./assets/icons/twitter.svg");
 socials.set("www.instagram.com", "./assets/icons/instagram.svg");
+const chosen = new Set();
 
 const root = document.getElementById("root");
 const div = document.querySelector(".wrapper");
@@ -19,14 +20,33 @@ fetch("./assets/js/data.json")
     root.append(...actorItems);
   })
   .catch((error) => {
+    const messageError = createElement(
+      "p",
+      {},
+      "something goes wrong... try again"
+    );
     // console.log(error);
-    root.append("try again");
+    root.append(messageError);
   });
 
 function createActorItem({ firstName, lastName, profilePicture, contacts }) {
-  const divPhotoWrapper = createElement("div", {
-    classNames: ["actor-photo-wrapper"],
-  });
+  const name = `${firstName}, ${lastName}`;
+  const h2Initials = createElement(
+    "h2",
+    {
+      classNames: ["actor-initials"],
+    },
+    document.createTextNode(getInitials(name))
+  );
+
+  const divPhotoWrapper = createElement(
+    "div",
+    {
+      classNames: ["actor-photo-wrapper"],
+    },
+    h2Initials
+  );
+
   const imgActor = createElement("img", {
     classNames: ["actor-photo"],
     attributes: { src: profilePicture },
@@ -46,7 +66,11 @@ function createActorItem({ firstName, lastName, profilePicture, contacts }) {
   const imgWrapper = createElement(
     "div",
     {
-      styles: { display: "inline- block" },
+      styles: {
+        display: "flex",
+        justifyContent: " center",
+        justifyContent: "space-evenly",
+      },
     },
     ...links
   );
@@ -57,33 +81,31 @@ function createActorItem({ firstName, lastName, profilePicture, contacts }) {
     "article",
     { classNames: ["article-style"] },
     divPhotoWrapper,
-    imgActor,
+
     h3,
     imgWrapper
-    // ...links
   );
-
-  const divChooseWrapper = createElement("div", {
-    classNames: ["choose-wrapper"],
-  });
 
   const liItem = createElement(
     "li",
     {
       classNames: ["liItem-class"],
-      event:{click: handleClick(divChooseWrapper)}
+      events: {
+        click: ({ target }) => {
+          choose.innerText = "";
+          choose.classList.add("choose-wrapper");
+          chosen.add(target.innerText);
+          choose.append(...chosen);
+        },
+      },
     },
     article
   );
-  
-  liItem.addEventListener("click", ({ target }) => {
-    divChooseWrapper.append(target.innerText);
-    const chosen = new Set();
-    chosen.add(divChooseWrapper)
-    choose.append(...chosen);
-  });
+
+  // liItem.addEventListener("click", ({ target }) => {
+  //   choose.innerText = "";
+  //   chosen.add(target.innerText);
+  //   choose.append(...chosen);
+  // });
   return liItem;
 }
-
-
-
