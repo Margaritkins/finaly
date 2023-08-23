@@ -59,22 +59,7 @@ line-height: 3em;
   height: 100px;
   border-radius: 50px;
   margin: auto;
-  
 }
-
-.actor-photo,
-.actor-initials {
-}
-
-/* .actor-photo-wrapper {
-  
-  display: flex; 
-  flex-direction: column;
-  justify-content: space-around;
-  margin: auto;
-  position: relative;
-  background-color: aquamarine; 
-} */
 
 .actor-initials {
   display: flex;
@@ -90,36 +75,6 @@ line-height: 3em;
   object-position: top;
   position: absolute;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .choose-wrapper{
   width: 100%;

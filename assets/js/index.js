@@ -91,21 +91,16 @@ function createActorItem({ firstName, lastName, profilePicture, contacts }) {
     {
       classNames: ["liItem-class"],
       events: {
-        click: ({ target }) => {
+        click: () => {
           choose.innerText = "";
           choose.classList.add("choose-wrapper");
-          chosen.add(target.innerText);
+          chosen.add(`${h3.innerText}, `)
           choose.append(...chosen);
         },
       },
     },
     article
   );
-
-  // liItem.addEventListener("click", ({ target }) => {
-  //   choose.innerText = "";
-  //   chosen.add(target.innerText);
-  //   choose.append(...chosen);
-  // });
+  
   return liItem;
 }

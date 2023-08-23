@@ -5,7 +5,6 @@ function handleImgLoad(elemParent) {
   };
 }
 
-
 function getInitials(arg) {
   const initials = arg.split(" ").map((arg) => arg[0].toUpperCase());
   return initials.join("");
